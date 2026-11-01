@@ -6,6 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Sponsor](https://img.shields.io/badge/Sponsor-GitHub-pink?logo=github)](https://github.com/sponsors/PatelDeepB)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-green.svg)](https://fastapi.tiangolo.com/)
 [![Manifest V3](https://img.shields.io/badge/Chrome%20Extension-Manifest%20V3-orange.svg)](https://developer.chrome.com/docs/extensions/mv3/)
@@ -42,11 +43,11 @@ Users can choose their preferred AI engine directly from the extension settings:
 
 | Provider | Default Model | Free Tier? | Key Required? | Best For |
 | :--- | :--- | :--- | :--- | :--- |
-| **NVIDIA NIM** | `meta/llama-3.1-70b-instruct` | **Yes (100% Free)** | No (Built-in) | Zero-cost high quality open-text answers |
-| **Groq** | `llama-3.1-70b-versatile` | **Yes (Free)** | Yes (Free key) | Ultra-fast ~300 tokens/sec answers |
-| **Google Gemini** | `gemini-1.5-flash` | **Yes (1M tokens/day)** | Yes (Free key) | Balanced speed and quality |
+| **NVIDIA NIM** | `meta/llama-3.3-70b-instruct` | **Yes (100% Free)** | No (Built-in) | Zero-cost high quality open-text answers |
+| **Groq** | `llama-3.3-70b-versatile` | **Yes (Free)** | Yes (Free key) | Ultra-fast ~300 tokens/sec answers |
+| **Google Gemini** | `gemini-3.8-flash` | **Yes (High quota)** | Yes (Free key) | Latest Gemini multimodal reasoning |
 | **OpenAI** | `gpt-4o-mini` | Paid | Yes | Trusted enterprise quality |
-| **Anthropic Claude** | `claude-3-haiku-20240307` | Paid | Yes | Nuanced, authentic human-like writing |
+| **Anthropic Claude** | `claude-3-5-haiku-latest` | Paid | Yes | Nuanced, authentic human-like writing |
 
 *Note: User API keys are stored strictly in `chrome.storage.local` inside the user's browser and are never saved on the server.*
 
@@ -126,6 +127,9 @@ cd job-sniper
 # Install dependencies and build extension
 npm install
 npm run build
+
+# Package extension zip for Chrome Web Store distribution
+npm run package
 ```
 1. Open Google Chrome and navigate to `chrome://extensions/`.
 2. Enable **Developer mode** (top right toggle).
@@ -164,13 +168,16 @@ API Documentation will be available at `http://localhost:8000/docs`.
 
 ---
 
-## Monetization Model (Open-Core Strategy)
+## Monetization & GitHub Sponsorship
 
-* **5 Free Snipes:** Every user gets 5 full applications and tailored resumes for free to experience the value upfront.
-* **Pay-As-You-Go Credit Packs:**
-  * **$15 for 100 applications:** Simple micro-transaction for active job hunters without recurring subscription commitments.
-  * **$35 for 300 applications:** Includes dynamic cover letters and recruiter InMail notes.
-* **Pro Sniper Subscription ($24/month):** For power hunters wanting background desktop push alerts within 15 minutes of job postings.
+JobSniper operates under a transparent Open-Core model:
+
+* **Open-Core Engine:** Free and open source for individual developers running locally.
+* **Support the Project & Unlock Pro:**
+  * Support continued development directly on GitHub Sponsors: **[github.com/sponsors/PatelDeepB](https://github.com/sponsors/PatelDeepB)**
+  * **$15 Sponsor Tier:** 100 cloud snipes + priority queue.
+  * **$35 Sponsor Tier:** 300 cloud snipes + dynamic cover letter generator + recruiter warm-touch engine.
+  * **$50+ Sponsor Tier:** Backer badge on repository, direct roadmap voting, and priority feature requests.
 
 ---
 
