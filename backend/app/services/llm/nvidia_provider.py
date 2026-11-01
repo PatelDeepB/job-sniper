@@ -5,17 +5,15 @@ import httpx
 from backend.app.services.llm.base import BaseLLMProvider, LLMResponse
 
 NVIDIA_API_BASE = "https://integrate.api.nvidia.com/v1/chat/completions"
-DEFAULT_NVIDIA_MODEL = "meta/llama-3.1-70b-instruct"
+DEFAULT_NVIDIA_MODEL = "meta/llama-3.3-70b-instruct"
 NVIDIA_FREE_API_KEY = "nvapi-free"
 
 
 class NvidiaProvider(BaseLLMProvider):
     """
-    NVIDIA NIM (Neural Interface Models) provider.
-    Runs meta/llama-3.1-70b-instruct for FREE on NVIDIA's hosted inference infrastructure.
-    Users can also pass their own NVIDIA NIM API key for higher rate limits.
+    NVIDIA NIM provider.
+    Latest model: meta/llama-3.3-70b-instruct (Free hosted inference on NVIDIA architecture).
     Docs: https://build.nvidia.com/explore/discover
-    Free API: https://build.nvidia.com/meta/llama-3_1-70b-instruct
     """
 
     @property
@@ -38,7 +36,6 @@ class NvidiaProvider(BaseLLMProvider):
         max_tokens: int = 300,
         custom_model_id: Optional[str] = None,
     ) -> LLMResponse:
-        # NVIDIA NIM offers free inference; use provided key or the public free key
         effective_api_key = api_key or NVIDIA_FREE_API_KEY
         model_id = custom_model_id or self.default_model_id
 

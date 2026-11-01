@@ -5,16 +5,15 @@ import httpx
 from backend.app.services.llm.base import BaseLLMProvider, LLMResponse
 
 GROQ_API_BASE = "https://api.groq.com/openai/v1/chat/completions"
-DEFAULT_GROQ_MODEL = "llama-3.1-70b-versatile"
+DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
 
 
 class GroqProvider(BaseLLMProvider):
     """
     Groq provider (ultra-fast LPU inference).
-    Free tier: Generous rate limits on open-source models including Llama 3.1 70B.
-    Inference speed: ~300 tokens/sec (fastest available free option).
+    Latest model: llama-3.3-70b-versatile.
+    Inference speed: ~300 tokens/sec.
     Docs: https://console.groq.com/docs/openai
-    Get a free key: https://console.groq.com/keys
     """
 
     @property

@@ -5,13 +5,14 @@ import httpx
 from backend.app.services.llm.base import BaseLLMProvider, LLMResponse
 
 GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
-DEFAULT_GEMINI_MODEL = "gemini-1.5-flash"
+DEFAULT_GEMINI_MODEL = "gemini-3.8-flash"
 
 
 class GeminiProvider(BaseLLMProvider):
     """
     Google Gemini provider.
-    Free tier: 1 million tokens/day on gemini-1.5-flash.
+    Latest model: gemini-3.8-flash.
+    Free tier: High daily allowance on Google AI Studio.
     Docs: https://ai.google.dev/gemini-api/docs
     """
 

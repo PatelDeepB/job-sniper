@@ -19,29 +19,29 @@ export const LLM_PROVIDER_OPTIONS: readonly LLMProviderOption[] = [
   {
     id: "nvidia",
     name: "NVIDIA NIM (Free)",
-    defaultModel: "meta/llama-3.1-70b-instruct",
+    defaultModel: "meta/llama-3.3-70b-instruct",
     isFreeTier: true,
     requiresApiKey: false,
-    getApiKeyUrl: "https://build.nvidia.com/meta/llama-3_1-70b-instruct",
-    description: "Llama 3.1 70B: Free. No API key required. Great quality."
+    getApiKeyUrl: "https://build.nvidia.com/meta/llama-3_3-70b-instruct",
+    description: "Llama 3.3 70B: Free. Zero cost, no API key required. Flagship quality."
   },
   {
     id: "groq",
     name: "Groq (Free + Ultra-Fast)",
-    defaultModel: "llama-3.1-70b-versatile",
+    defaultModel: "llama-3.3-70b-versatile",
     isFreeTier: true,
     requiresApiKey: true,
     getApiKeyUrl: "https://console.groq.com/keys",
-    description: "Llama 3.1 70B: Free API key, ~300 tokens/sec. Fastest available."
+    description: "Llama 3.3 70B: Free API key, ~300 tokens/sec. Instant responses."
   },
   {
     id: "gemini",
-    name: "Google Gemini Flash",
-    defaultModel: "gemini-1.5-flash",
+    name: "Google Gemini 3.8 Flash",
+    defaultModel: "gemini-3.8-flash",
     isFreeTier: true,
     requiresApiKey: true,
     getApiKeyUrl: "https://aistudio.google.com/app/apikey",
-    description: "Gemini 1.5 Flash: 1M free tokens/day. Excellent quality."
+    description: "Gemini 3.8 Flash: 1M free tokens/day. State of the art speed."
   },
   {
     id: "openai",
@@ -50,16 +50,16 @@ export const LLM_PROVIDER_OPTIONS: readonly LLMProviderOption[] = [
     isFreeTier: false,
     requiresApiKey: true,
     getApiKeyUrl: "https://platform.openai.com/api-keys",
-    description: "GPT-4o Mini: Paid. High quality, widely trusted."
+    description: "GPT-4o Mini: Paid. High reliability, widely trusted."
   },
   {
     id: "claude",
-    name: "Anthropic Claude Haiku",
-    defaultModel: "claude-3-haiku-20240307",
+    name: "Anthropic Claude 3.5 Haiku",
+    defaultModel: "claude-3-5-haiku-latest",
     isFreeTier: false,
     requiresApiKey: true,
     getApiKeyUrl: "https://console.anthropic.com/settings/keys",
-    description: "Claude 3 Haiku: Paid. Best for nuanced writing quality."
+    description: "Claude 3.5 Haiku: Paid. Superior authentic human-like prose."
   }
 ] as const;
 

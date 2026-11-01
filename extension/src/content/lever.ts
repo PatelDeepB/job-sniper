@@ -1,6 +1,9 @@
 import { FormMatcher } from "../services/form_matcher.js";
+import { LLMSettingsService } from "../services/llm_settings.js";
 import { StorageService } from "../services/storage.js";
 import { MasterProfile } from "../types/profile.js";
+
+const BACKEND_API_BASE = "http://localhost:8000";
 
 class LeverAutopilot {
   public static init(): void {
@@ -27,6 +30,7 @@ class LeverAutopilot {
     let fieldsFilledCount = 0;
     fieldsFilledCount += await this.fillStandardFields(form, profile);
     fieldsFilledCount += await this.fillCustomQuestions(form, profile);
+    fieldsFilledCount += await this.fillCustomTextareas(form, profile);
 
     this.displayInPageSuccessBanner(fieldsFilledCount);
     return fieldsFilledCount;
@@ -122,6 +126,59 @@ class LeverAutopilot {
     }
 
     return filled;
+  }
+
+  private static async fillCustomTextareas(form: HTMLElement, profile: MasterProfile): Promise<number> {
+    let filled = 0;
+    const textareas = Array.from(form.querySelectorAll<HTMLTextAreaElement>("textarea"));
+    const activeProvider = await LLMSettingsService.getActiveProviderConfig();
+
+    for (const textarea of textareas) {
+      if (textarea.value.trim().length > 0) {
+        continue;
+      }
+
+      const labelText = textarea.closest(".application-question")?.querySelector(".text")?.textContent?.trim() || "Additional information";
+      const answer = await this.generateAIAnswer(labelText, profile, activeProvider);
+
+      if (answer) {
+        await FormMatcher.simulateHumanTyping(textarea, answer);
+        filled += 1;
+      }
+    }
+
+    return filled;
+  }
+
+  private static async generateAIAnswer(
+    questionText: string,
+    profile: MasterProfile,
+    providerConfig: { provider: string; apiKey: string | null }
+  ): Promise<string> {
+    try {
+      const response = await fetch(`${BACKEND_API_BASE}/api/v1/llm/generate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          provider_config: {
+            provider: providerConfig.provider,
+            api_key: providerConfig.apiKey
+          },
+          system_prompt: "You are an expert career assistant. Write an authentic, concise 2-sentence response for a job application. Avoid clichés like 'I am passionate'.",
+          user_prompt: `Question: ${questionText}\nCandidate Summary: ${profile.summary}\nCore Skills: ${profile.coreSkills.join(", ")}`,
+          max_tokens: 200
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        return data.generated_text || profile.summary;
+      }
+    } catch {
+      // Fallback
+    }
+
+    return profile.summary;
   }
 
   private static displayInPageSuccessBanner(fieldsCount: number): void {
