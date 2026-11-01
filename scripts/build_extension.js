@@ -21,3 +21,4 @@ if (!existsSync(popupDistDir)) {
 }
 cpSync(resolve(extensionDir, "src", "popup", "popup.html"), resolve(popupDistDir, "popup.html"));
 cpSync(resolve(extensionDir, "src", "popup", "popup.css"), resolve(popupDistDir, "popup.css"));
+cpSync(resolve(extensionDir, "src", "popup", "llm_settings.css"), resolve(popupDistDir, "llm_settings.css"));

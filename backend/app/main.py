@@ -1,14 +1,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from backend.app.api.v1.llm import router as llm_router
 from backend.app.api.v1.recruiter import router as recruiter_router
 from backend.app.api.v1.sniper import router as sniper_router
 from backend.app.api.v1.tailor import router as tailor_router
 
 app = FastAPI(
     title="JobSniper Cloud API",
-    description="Autonomous AI career agent API: ATS keyword tailoring, real-time job sniping, and recruiter intelligence.",
-    version="0.1.0",
+    description=(
+        "Autonomous AI career agent API: multi-LLM provider support (Gemini, OpenAI, Claude, NVIDIA NIM, Groq), "
+        "ATS keyword tailoring, real-time job sniping, and recruiter intelligence."
+    ),
+    version="0.2.0",
 )
 
 app.add_middleware(
@@ -22,9 +26,10 @@ app.add_middleware(
 app.include_router(tailor_router, prefix="/api/v1")
 app.include_router(sniper_router, prefix="/api/v1")
 app.include_router(recruiter_router, prefix="/api/v1")
+app.include_router(llm_router, prefix="/api/v1")
 
 
 @app.get("/health", tags=["System"])
 async def health_check() -> dict:
     """Lightweight unauthenticated health check endpoint."""
-    return {"status": "healthy", "service": "job-sniper-api", "version": "0.1.0"}
+    return {"status": "healthy", "service": "job-sniper-api", "version": "0.2.0"}

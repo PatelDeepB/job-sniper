@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JobSniper Dashboard</title>
   <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="llm_settings.css">
 </head>
 <body>
   <div class="app-container">
@@ -13,7 +14,7 @@
         <div class="logo-icon">🎯</div>
         <div class="logo-meta">
           <h1>JobSniper</h1>
-          <span class="badge-status">v0.1.0 (Active)</span>
+          <span class="badge-status">v0.2.0 (Active)</span>
         </div>
       </div>
       <div class="snipe-toggle-group">
@@ -44,6 +45,7 @@
       <button type="button" class="tab-btn active" data-tab="tabDashboard">Dashboard</button>
       <button type="button" class="tab-btn" data-tab="tabProfile">Profile</button>
       <button type="button" class="tab-btn" data-tab="tabPreferences">Preferences</button>
+      <button type="button" class="tab-btn" data-tab="tabAIEngine">AI Engine</button>
     </nav>
 
     <main class="tab-content">
@@ -168,6 +170,11 @@
             Save Preferences
           </button>
         </form>
+      </section>
+
+      <!-- AI ENGINE TAB -->
+      <section id="tabAIEngine" class="tab-pane">
+        <div id="aiEngineSettingsContainer"></div>
       </section>
     </main>
 
