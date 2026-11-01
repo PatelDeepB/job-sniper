@@ -25,6 +25,7 @@ export interface TargetPreferences {
   readonly remoteOnly: boolean;
   readonly targetLocations: readonly string[];
   readonly autoSnipeEnabled: boolean;
+  readonly apiBaseUrl?: string;
 }
 
 export interface ExperienceBullet {

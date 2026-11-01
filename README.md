@@ -33,6 +33,7 @@ Meanwhile, "passive copilots" (such as Simplify) require users to spend hours ma
 | **Bot Detection Safety** | High risk (Banned accounts) | Safe (Manual human clicks) | **Safe (Human-paced in local browser)** |
 | **Recruiter Touch** | None | None | **1-Click personalized InMail (<300 chars)** |
 | **AI Provider Choice** | Fixed closed AI | Fixed closed AI | **5 Providers (NVIDIA NIM Free, Groq, Gemini, OpenAI, Claude)** |
+| **Deployment Mode** | Cloud-only lock-in | Cloud-only lock-in | **Local Docker or Cloud API (User Choice)** |
 | **Pricing** | $99 to $250 upfront lock-in | Free / Freemium | **Pay-as-you-go ($15 for 100 snipes)** |
 
 ---
@@ -70,7 +71,7 @@ flowchart TD
         Filler -->|Submits| ATS["Target ATS (Greenhouse / Lever)"]
     end
     
-    subgraph "Cloud Backend (FastAPI / Serverless)"
+    subgraph "Cloud Backend (FastAPI / Serverless / Docker)"
         Ext -->|Sends JD + Master Profile| TailorAPI["Resume Tailoring API"]
         TailorAPI -->|Token Normalization| Matcher["Keyword Taxonomy Matcher"]
         Matcher -->|Reorders Real Bullets| PDFGen["Dynamic PDF Compiler (ReportLab)"]
@@ -134,8 +135,11 @@ npm run package
 1. Open Google Chrome and navigate to `chrome://extensions/`.
 2. Enable **Developer mode** (top right toggle).
 3. Click **Load unpacked** and select the `job-sniper/extension/dist/` directory.
+4. *Optional Cloud Endpoint:* Go to the **Preferences** tab in the extension popup to customize the API Endpoint (defaults to `http://localhost:8000`, or points to your hosted cloud backend).
 
 ### 2. Backend Cloud Engine Setup
+
+#### Option A: Local Python Environment
 ```bash
 # Set up virtual environment
 python -m venv .venv
@@ -151,6 +155,17 @@ pytest -v
 uvicorn backend.app.main:app --reload --port 8000
 ```
 API Documentation will be available at `http://localhost:8000/docs`.
+
+#### Option B: Docker Container Deployment (1-Command Cloud Run)
+```bash
+# Run with Docker Compose
+docker compose up -d
+
+# Or build and run standalone container
+docker build -t jobsniper-api .
+docker run -p 8000:8000 jobsniper-api
+```
+Easily deploy this container to Railway, Render, Fly.io, AWS ECS, or DigitalOcean App Platform.
 
 ---
 

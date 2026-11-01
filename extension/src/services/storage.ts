@@ -21,7 +21,8 @@ const DEFAULT_PROFILE: MasterProfile = {
     minSalaryUSD: 100000,
     remoteOnly: true,
     targetLocations: ["Remote", "United States"],
-    autoSnipeEnabled: false
+    autoSnipeEnabled: false,
+    apiBaseUrl: "http://localhost:8000"
   },
   headline: "",
   summary: "",
@@ -56,6 +57,12 @@ export class StorageService {
       return;
     }
     localStorage.setItem(this.PROFILE_KEY, JSON.stringify(profile));
+  }
+
+  public static async getApiBaseUrl(): Promise<string> {
+    const profile = await this.loadProfile();
+    const rawUrl = profile.preferences?.apiBaseUrl || "http://localhost:8000";
+    return rawUrl.trim().replace(/\/+$/, "");
   }
 
   public static async loadStats(): Promise<ApplicationStats> {
