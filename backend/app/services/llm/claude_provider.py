@@ -5,14 +5,14 @@ import httpx
 from backend.app.services.llm.base import BaseLLMProvider, LLMResponse
 
 CLAUDE_API_BASE = "https://api.anthropic.com/v1/messages"
-DEFAULT_CLAUDE_MODEL = "claude-3-haiku-20240307"
+DEFAULT_CLAUDE_MODEL = "claude-3-5-haiku-latest"
 ANTHROPIC_VERSION = "2023-06-01"
 
 
 class ClaudeProvider(BaseLLMProvider):
     """
     Anthropic Claude provider.
-    Recommended model: claude-3-haiku (fastest & cheapest Claude, excellent for short-form text).
+    Latest model: claude-3-5-haiku-latest (fastest & highest quality Haiku for job applications).
     Docs: https://docs.anthropic.com/claude/reference/messages_post
     """
 

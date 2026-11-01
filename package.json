@@ -1,10 +1,11 @@
 {
   "name": "job-sniper-extension",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "description": "Chrome Extension for JobSniper: 1-click human-paced ATS autofill, real-time job alerts, and recruiter outreach.",
+  "description": "Chrome Extension for JobSniper: 1-click human-paced ATS autofill, real-time job alerts, multi-LLM engine, and recruiter outreach.",
   "scripts": {
     "build": "tsc && node scripts/build_extension.js",
+    "package": "npm run build && python scripts/package_extension.py",
     "watch": "tsc --watch",
     "lint": "eslint src --ext .ts"
   },
@@ -14,7 +15,11 @@
     "ai-agent",
     "ats-autofill",
     "greenhouse",
-    "lever"
+    "lever",
+    "gemini",
+    "claude",
+    "nvidia",
+    "groq"
   ],
   "author": "Deep Patel",
   "license": "MIT",

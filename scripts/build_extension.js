@@ -14,6 +14,13 @@ if (!existsSync(distDir)) {
 // Copy manifest.json to dist/
 cpSync(resolve(extensionDir, "manifest.json"), resolve(distDir, "manifest.json"));
 
+// Copy icons to dist/icons/
+const iconsSrcDir = resolve(extensionDir, "icons");
+const iconsDistDir = resolve(distDir, "icons");
+if (existsSync(iconsSrcDir)) {
+  cpSync(iconsSrcDir, iconsDistDir, { recursive: true });
+}
+
 // Copy popup HTML and CSS to dist/popup/
 const popupDistDir = resolve(distDir, "popup");
 if (!existsSync(popupDistDir)) {
