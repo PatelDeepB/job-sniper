@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="960" height="540" fill="url(#bgGradient)" rx="16" />
+
+  <!-- Window Frame Container -->
+  <g transform="translate(60, 40)" filter="url(#shadow)">
+    <!-- Browser Window Card -->
+    <rect width="840" height="460" rx="12" fill="url(#cardGradient)" stroke="#334155" stroke-width="1.5" />
+
+    <!-- Top Window Titlebar -->
+    <rect width="840" height="48" rx="12" fill="#0f172a" />
+    <path d="M 0 48 L 840 48" stroke="#334155" stroke-width="1" />
+    
+    <!-- Window Control Dots -->
+    <circle cx="28" cy="24" r="6" fill="#ef4444" />
+    <circle cx="48" cy="24" r="6" fill="#f59e0b" />
+    <circle cx="68" cy="24" r="6" fill="#10b981" />
+
+    <!-- Brand / Title in Titlebar -->
+    <text x="100" y="28" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#f8fafc">
+      🎯 JobSniper v0.1.0 | Autonomous ATS Career Agent
+    </text>
+    
+    <!-- Auto-Snipe Status Pill -->
+    <rect x="670" y="14" width="145" height="22" rx="11" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="1" />
+    <circle cx="682" cy="25" r="4" fill="#10b981" />
+    <text x="694" y="29" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10" font-weight="600" fill="#34d399">
+      AUTO-SNIPER ACTIVE
+    </text>
+
+    <!-- Metrics Ribbon -->
+    <g transform="translate(30, 70)">
+      <!-- Metric 1: Sniped -->
+      <rect x="0" y="0" width="245" height="74" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="20" y="34" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="800" fill="#38bdf8">42</text>
+      <text x="20" y="54" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">Jobs Sniped &lt;15m</text>
+      <text x="180" y="30" font-size="20">⚡</text>
+
+      <!-- Metric 2: Filled -->
+      <rect x="265" y="0" width="245" height="74" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="285" y="34" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="800" fill="#10b981">118</text>
+      <text x="285" y="54" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">ATS Forms Auto-Filled</text>
+      <text x="445" y="30" font-size="20">📝</text>
+
+      <!-- Metric 3: Time Saved -->
+      <rect x="530" y="0" width="250" height="74" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="550" y="34" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="800" fill="#a855f7">41.3 hrs</text>
+      <text x="550" y="54" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">Human Typing Saved</text>
+      <text x="715" y="30" font-size="20">⏳</text>
+    </g>
+
+    <!-- Main Content Split (Left: Active Form Inspector / Right: Live Feed & Outreach) -->
+    
+    <!-- Left Panel: Live Application Inspector -->
+    <g transform="translate(30, 165)">
+      <rect width="380" height="260" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      
+      <!-- Panel Header -->
+      <text x="20" y="30" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#f8fafc">
+        Active Tab: Greenhouse Application
+      </text>
+      <rect x="300" y="16" width="60" height="20" rx="4" fill="#38bdf8" fill-opacity="0.2" />
+      <text x="312" y="30" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#38bdf8">DETECTED</text>
+      
+      <line x1="20" y1="46" x2="360" y2="46" stroke="#334155" stroke-width="1" />
+
+      <!-- Match Score Gauge -->
+      <rect x="20" y="60" width="340" height="48" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1" />
+      <text x="35" y="88" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="800" fill="#10b981">
+        95% ATS Keyword Match Score
+      </text>
+      <text x="35" y="100" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="9" fill="#94a3b8">
+        Matched: FastAPI, Docker, PostgreSQL, Kubernetes, Redis
+      </text>
+
+      <!-- Autopilot Status -->
+      <text x="20" y="132" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">
+        Autopilot Engine Actions:
+      </text>
+      
+      <circle cx="28" cy="154" r="4" fill="#10b981" />
+      <text x="40" y="157" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#f8fafc">
+        Simulated human typing (35ms delays)
+      </text>
+
+      <circle cx="28" cy="180" r="4" fill="#10b981" />
+      <text x="40" y="183" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#f8fafc">
+        Work authorization: Legally authorized (Yes)
+      </text>
+
+      <circle cx="28" cy="206" r="4" fill="#10b981" />
+      <text x="40" y="209" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#f8fafc">
+        Demographic disclosures: Declined safely
+      </text>
+
+      <!-- Action Button -->
+      <rect x="20" y="222" width="340" height="28" rx="5" fill="url(#blueGlow)" />
+      <text x="140" y="240" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#ffffff">
+        AUTO-FILL COMPLETE (100%)
+      </text>
+    </g>
+
+    <!-- Right Panel: Live Sniper Feed & Recruiter Outreach -->
+    <g transform="translate(430, 165)">
+      <rect width="380" height="260" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      
+      <!-- Panel Header -->
+      <text x="20" y="30" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#f8fafc">
+        Live ATS Board Sniper Feed (&lt;15m)
+      </text>
+      <circle cx="355" cy="25" r="4" fill="#ef4444" />
+      <text x="315" y="28" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="9" font-weight="600" fill="#ef4444">LIVE</text>
+      <line x1="20" y1="46" x2="360" y2="46" stroke="#334155" stroke-width="1" />
+
+      <!-- Feed Item 1 -->
+      <g transform="translate(20, 56)">
+        <rect width="340" height="42" rx="6" fill="#0f172a" />
+        <text x="12" y="20" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#38bdf8">Stripe</text>
+        <text x="56" y="20" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#f8fafc">Staff Backend Engineer (APIs)</text>
+        <rect x="275" y="10" width="55" height="18" rx="4" fill="#10b981" fill-opacity="0.2" />
+        <text x="282" y="22" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#10b981">6m AGO</text>
+      </g>
+
+      <!-- Feed Item 2 -->
+      <g transform="translate(20, 106)">
+        <rect width="340" height="42" rx="6" fill="#0f172a" />
+        <text x="12" y="20" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#38bdf8">Figma</text>
+        <text x="54" y="20" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#f8fafc">Senior Full Stack Developer</text>
+        <rect x="275" y="10" width="55" height="18" rx="4" fill="#10b981" fill-opacity="0.2" />
+        <text x="278" y="22" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#10b981">11m AGO</text>
+      </g>
+
+      <!-- Recruiter Warm-Touch Box -->
+      <g transform="translate(20, 158)">
+        <rect width="340" height="90" rx="6" fill="#0f172a" stroke="#475569" stroke-dasharray="3 3" />
+        <text x="12" y="20" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10" font-weight="700" fill="#a855f7">
+          🤝 1-Click Recruiter Warm Touch (248/300 chars):
+        </text>
+        <text x="12" y="38" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="9.5" fill="#94a3b8">
+          "Hi Sarah, saw you posted Staff Backend Engineer at Stripe. Just
+        </text>
+        <text x="12" y="52" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="9.5" fill="#94a3b8">
+          submitted my application highlighting my experience in FastAPI &amp;
+        </text>
+        <text x="12" y="66" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="9.5" fill="#94a3b8">
+          Docker. Would love to connect and follow your team's roadmap!"
+        </text>
+        <text x="220" y="82" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="9" font-weight="700" fill="#38bdf8">
+          👉 Open in LinkedIn (1-Click)
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
