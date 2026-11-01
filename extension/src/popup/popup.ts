@@ -119,6 +119,11 @@ class PopupController {
     (document.getElementById("minSalary") as HTMLInputElement).value = String(preferences.minSalaryUSD);
     (document.getElementById("yearsExp") as HTMLInputElement).value = "3";
     (document.getElementById("remoteOnly") as HTMLInputElement).checked = preferences.remoteOnly;
+
+    const apiBaseUrlInput = document.getElementById("apiBaseUrl") as HTMLInputElement | null;
+    if (apiBaseUrlInput) {
+      apiBaseUrlInput.value = preferences.apiBaseUrl || "http://localhost:8000";
+    }
   }
 
   private async inspectActiveBrowserTab(): Promise<void> {
@@ -214,11 +219,15 @@ class PopupController {
       .map((title) => title.trim())
       .filter((title) => title.length > 0);
 
+    const apiBaseUrlInput = document.getElementById("apiBaseUrl") as HTMLInputElement | null;
+    const apiBaseUrl = (apiBaseUrlInput && apiBaseUrlInput.value.trim()) || "http://localhost:8000";
+
     const updatedPreferences: TargetPreferences = {
       ...existingProfile.preferences,
       targetTitles: titlesArray,
       minSalaryUSD: Number((document.getElementById("minSalary") as HTMLInputElement).value) || 100000,
-      remoteOnly: (document.getElementById("remoteOnly") as HTMLInputElement).checked
+      remoteOnly: (document.getElementById("remoteOnly") as HTMLInputElement).checked,
+      apiBaseUrl: apiBaseUrl
     };
 
     await StorageService.saveProfile({

@@ -1,0 +1,17 @@
+services:
+  job-sniper-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: jobsniper-api:latest
+    container_name: jobsniper-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

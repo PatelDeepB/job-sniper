@@ -1,7 +1,6 @@
 import { StorageService } from "../services/storage.js";
 
 const SNIPER_ALARM_NAME = "jobsniper_snipe_alarm";
-const API_BASE_URL = "http://localhost:8000";
 
 class BackgroundSniperWorker {
   public static init(): void {
@@ -59,7 +58,8 @@ class BackgroundSniperWorker {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/sniper/feed?max_age_minutes=15`);
+      const apiBaseUrl = await StorageService.getApiBaseUrl();
+      const response = await fetch(`${apiBaseUrl}/api/v1/sniper/feed?max_age_minutes=15`);
       if (!response.ok) {
         return;
       }
@@ -111,7 +111,7 @@ class BackgroundSniperWorker {
     const notificationId = `snipe_${encodeURIComponent(job.url)}`;
     chrome.notifications.create(notificationId, {
       type: "basic",
-      iconUrl: "popup/popup.css", // Uses bundled resource as fallback icon
+      iconUrl: "icons/icon128.png",
       title: "🎯 JobSniper: Fresh ATS Post Detected!",
       message: `${job.company_name} posted ${job.title} (${job.estimated_age_minutes}m ago). Click to open!`,
       priority: 2
