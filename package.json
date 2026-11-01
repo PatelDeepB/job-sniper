@@ -1,9 +1,10 @@
 {
   "name": "job-sniper-extension",
   "version": "0.1.0",
+  "type": "module",
   "description": "Chrome Extension for JobSniper: 1-click human-paced ATS autofill, real-time job alerts, and recruiter outreach.",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node scripts/build_extension.js",
     "watch": "tsc --watch",
     "lint": "eslint src --ext .ts"
   },
