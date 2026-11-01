@@ -1,3 +1,4 @@
+import { LLMSettingsService } from "../services/llm_settings.js";
 import { StorageService } from "../services/storage.js";
 import { MasterProfile, TargetPreferences } from "../types/profile.js";
 
@@ -10,6 +11,7 @@ class PopupController {
     this.setupEventListeners();
     await this.loadInitialData();
     await this.inspectActiveBrowserTab();
+    await this.initializeAIEngineSettings();
   }
 
   private setupTabNavigation(): void {
@@ -76,6 +78,13 @@ class PopupController {
     }
 
     await this.renderSniperFeed();
+  }
+
+  private async initializeAIEngineSettings(): Promise<void> {
+    const container = document.getElementById("aiEngineSettingsContainer");
+    if (container) {
+      await LLMSettingsService.renderProviderSettings(container);
+    }
   }
 
   private renderStats(snipedCount: number, filledCount: number, hoursSaved: number): void {
