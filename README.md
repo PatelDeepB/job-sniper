@@ -62,30 +62,30 @@ JobSniper uses an **Open-Core architecture**:
 
 ```mermaid
 flowchart TD
-    User["Job Seeker"] -->|Installs| Ext["Chrome Extension (Manifest V3)"]
-    Ext -->|Stores Profile, Keys & Preferences| LocalStorage["Chrome Local Storage"]
+    User["Job Seeker"] -->|"Installs"| Ext["Chrome Extension (Manifest V3)"]
+    Ext -->|"Stores Profile & Preferences"| LocalStorage["Chrome Local Storage"]
     
     subgraph "Client Side (Local Browser)"
-        Ext -->|Detects Page| Parser["DOM Form Inspector (Greenhouse / Lever)"]
-        Parser -->|Injects Data| Filler["Human-Paced Auto-Filler Engine"]
-        Filler -->|Submits| ATS["Target ATS (Greenhouse / Lever)"]
+        Ext -->|"Detects Page"| Parser["DOM Form Inspector (Greenhouse / Lever)"]
+        Parser -->|"Injects Data"| Filler["Human-Paced Auto-Filler Engine"]
+        Filler -->|"Submits"| ATS["Target ATS (Greenhouse / Lever)"]
     end
     
     subgraph "Cloud Backend (FastAPI / Serverless / Docker)"
-        Ext -->|Sends JD + Master Profile| TailorAPI["Resume Tailoring API"]
-        TailorAPI -->|Token Normalization| Matcher["Keyword Taxonomy Matcher"]
-        Matcher -->|Reorders Real Bullets| PDFGen["Dynamic PDF Compiler (ReportLab)"]
-        PDFGen -->|Returns Tailored PDF| Ext
+        Ext -->|"Sends JD + Master Profile"| TailorAPI["Resume Tailoring API"]
+        TailorAPI -->|"Token Normalization"| Matcher["Keyword Taxonomy Matcher"]
+        Matcher -->|"Reorders Real Bullets"| PDFGen["Dynamic PDF Compiler (ReportLab)"]
+        PDFGen -->|"Returns Tailored PDF"| Ext
         
-        Ext -->|Sends Question + Selected Provider| LLMRouter["Multi-LLM Router"]
-        LLMRouter -->|NVIDIA NIM / Groq / Gemini / OpenAI / Claude| LLMResult["AI Answer"]
-        LLMResult -->|Injected to Form| Ext
+        Ext -->|"Sends Question + Provider"| LLMRouter["Multi-LLM Router"]
+        LLMRouter -->|"NVIDIA NIM / Groq / Gemini / OpenAI / Claude"| LLMResult["AI Answer"]
+        LLMResult -->|"Injected to Form"| Ext
 
-        Crawler["Public ATS Feed Scraper"] -->|Polls Boards API Every 5 Min| JobDB["Postings Index"]
-        JobDB -->|Push Alert (<15 min old)| Ext
+        Crawler["Public ATS Feed Scraper"] -->|"Polls Boards API Every 5 Min"| JobDB["Postings Index"]
+        JobDB -->|"Push Alert (under 15 min old)"| Ext
         
-        Ext -->|Requests Recruiter Match| RecruiterAPI["Recruiter Lead Engine"]
-        RecruiterAPI -->|Generates 3-Sentence Note| Ext
+        Ext -->|"Requests Recruiter Match"| RecruiterAPI["Recruiter Lead Engine"]
+        RecruiterAPI -->|"Generates 3-Sentence Note"| Ext
     end
 ```
 
