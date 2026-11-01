@@ -1,6 +1,6 @@
 {
   "name": "job-sniper-extension",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "type": "module",
   "description": "Chrome Extension for JobSniper: 1-click human-paced ATS autofill, real-time job alerts, multi-LLM engine, and recruiter outreach.",
   "scripts": {

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "JobSniper: Autonomous ATS Career Agent",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Real-time ATS job sniper (<15m), dynamic ATS keyword resume re-ordering, multi-LLM question engine, and 1-click recruiter direct outreach.",
   "permissions": [
     "storage",
