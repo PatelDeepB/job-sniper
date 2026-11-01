@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobSniper Dashboard</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-group">
+        <div class="logo-icon">🎯</div>
+        <div class="logo-meta">
+          <h1>JobSniper</h1>
+          <span class="badge-status">v0.1.0 (Active)</span>
+        </div>
+      </div>
+      <div class="snipe-toggle-group">
+        <label class="switch" title="Auto-Snipe new postings within 15m">
+          <input type="checkbox" id="autoSnipeToggle">
+          <span class="slider"></span>
+        </label>
+        <span class="toggle-label">Auto-Snipe</span>
+      </div>
+    </header>
+
+    <section class="stats-ribbon">
+      <div class="stat-card">
+        <span class="stat-value" id="statSniped">0</span>
+        <span class="stat-label">Sniped &lt;15m</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="statFilled">0</span>
+        <span class="stat-label">Forms Filled</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="statHours">0.0h</span>
+        <span class="stat-label">Time Saved</span>
+      </div>
+    </section>
+
+    <nav class="tab-navigation">
+      <button type="button" class="tab-btn active" data-tab="tabDashboard">Dashboard</button>
+      <button type="button" class="tab-btn" data-tab="tabProfile">Profile</button>
+      <button type="button" class="tab-btn" data-tab="tabPreferences">Preferences</button>
+    </nav>
+
+    <main class="tab-content">
+      <!-- DASHBOARD TAB -->
+      <section id="tabDashboard" class="tab-pane active">
+        <div class="action-card">
+          <h3>Current Tab Action</h3>
+          <p id="pageStatusText" class="status-indicator">Inspecting active page...</p>
+          <div class="button-group">
+            <button type="button" id="btnAutofillCurrent" class="btn btn-primary" disabled>
+              Auto-Fill Application
+            </button>
+            <button type="button" id="btnTailorResume" class="btn btn-secondary" disabled>
+              Tailor Resume (95%+ ATS)
+            </button>
+          </div>
+        </div>
+
+        <div class="recent-feed-card">
+          <div class="feed-header">
+            <h4>Live ATS Sniper Feed</h4>
+            <span class="feed-live-dot"></span>
+          </div>
+          <div id="sniperFeedList" class="feed-list">
+            <p class="empty-state">No jobs sniped yet. Enable Auto-Snipe or open a Greenhouse/Lever post.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFILE TAB -->
+      <section id="tabProfile" class="tab-pane">
+        <form id="profileForm" class="form-container">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" placeholder="Jane Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="jane@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
+            </div>
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input type="text" id="location" placeholder="San Francisco, CA">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="linkedInUrl">LinkedIn Profile URL</label>
+            <input type="url" id="linkedInUrl" placeholder="https://linkedin.com/in/janedoe">
+          </div>
+
+          <div class="form-group">
+            <label for="githubUrl">GitHub / Portfolio URL</label>
+            <input type="url" id="githubUrl" placeholder="https://github.com/janedoe">
+          </div>
+
+          <div class="form-group">
+            <label for="coreSkills">Core Skills (comma-separated)</label>
+            <textarea id="coreSkills" rows="2" placeholder="TypeScript, Python, FastAPI, React, Docker, AWS, PostgreSQL"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="headline">Professional Headline</label>
+            <input type="text" id="headline" placeholder="Senior Backend Engineer | Distributed Systems & APIs">
+          </div>
+
+          <button type="submit" id="btnSaveProfile" class="btn btn-primary btn-full">
+            Save Profile
+          </button>
+        </form>
+      </section>
+
+      <!-- PREFERENCES TAB -->
+      <section id="tabPreferences" class="tab-pane">
+        <form id="preferencesForm" class="form-container">
+          <div class="form-group">
+            <label for="targetTitles">Target Job Titles (comma-separated)</label>
+            <input type="text" id="targetTitles" placeholder="Software Engineer, Backend Engineer, Full Stack">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="minSalary">Minimum Annual Salary (USD)</label>
+              <input type="number" id="minSalary" step="5000" placeholder="120000">
+            </div>
+            <div class="form-group">
+              <label for="yearsExp">Years of Experience</label>
+              <input type="number" id="yearsExp" step="1" min="0" placeholder="4">
+            </div>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="remoteOnly" checked>
+              Remote roles only
+            </label>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="authorizedWork" checked>
+              Legally authorized to work in target country
+            </label>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="requiresSponsorship">
+              Requires visa sponsorship now or in the future
+            </label>
+          </div>
+
+          <button type="submit" id="btnSavePreferences" class="btn btn-primary btn-full">
+            Save Preferences
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span class="footer-note">JobSniper Open-Core | Local Browser Sandbox</span>
+    </footer>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

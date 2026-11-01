@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "JobSniper: Autonomous ATS Career Agent",
+  "version": "0.1.0",
+  "description": "Real-time ATS job sniper (<15m), dynamic ATS keyword resume re-ordering, and 1-click recruiter direct outreach.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "alarms",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://boards.greenhouse.io/*",
+    "https://job-boards.greenhouse.io/*",
+    "https://jobs.lever.co/*",
+    "http://localhost:8000/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "JobSniper Dashboard"
+  },
+  "background": {
+    "service_worker": "background/service_worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://boards.greenhouse.io/*",
+        "https://job-boards.greenhouse.io/*"
+      ],
+      "js": ["content/greenhouse.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://jobs.lever.co/*"
+      ],
+      "js": ["content/lever.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
