@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from backend.app.api.v1.recruiter import router as recruiter_router
+from backend.app.api.v1.sniper import router as sniper_router
 from backend.app.api.v1.tailor import router as tailor_router
 
 app = FastAPI(
@@ -18,6 +20,8 @@ app.add_middleware(
 )
 
 app.include_router(tailor_router, prefix="/api/v1")
+app.include_router(sniper_router, prefix="/api/v1")
+app.include_router(recruiter_router, prefix="/api/v1")
 
 
 @app.get("/health", tags=["System"])
